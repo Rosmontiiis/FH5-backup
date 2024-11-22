@@ -49,7 +49,7 @@ if /i "%choice%"=="1" (
     cls
     goto restore
 ) else (
-    echo Invalid choice. Please enter 1 or 2.
+    echo 无效输入，请输入 1 o或 2.
 )
 goto end
 
