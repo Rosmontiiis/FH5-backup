@@ -1,8 +1,8 @@
 @echo off
-title steamFH5Í¬²½¹¤¾ß Ciallo~¡ï
-echo ÇëÈ·±£steamÕıÔÚÔËĞĞÖĞÇÒ×î½üµÇÂ¼ÕËºÅÎªÍ¬²½ÕËºÅºó¼ÌĞø
+title steamFH5åŒæ­¥å·¥å…· Ciallo~â˜…
+echo è¯·ç¡®ä¿steamæ­£åœ¨è¿è¡Œä¸­ä¸”æœ€è¿‘ç™»å½•è´¦å·ä¸ºåŒæ­¥è´¦å·åç»§ç»­
 echo\
-echo Èç¹ûÒª»Ö¸´´æµµÇë½«.tar.gzÎÄ¼ş·ÅÈë¹¤¾ßËùÔÚÄ¿Â¼ÖĞ
+echo å¦‚æœè¦æ¢å¤å­˜æ¡£è¯·å°†.tar.gzæ–‡ä»¶æ”¾å…¥å·¥å…·æ‰€åœ¨ç›®å½•ä¸­
 echo\
 pause
 cls
@@ -15,15 +15,15 @@ for /f "tokens=2 delims==" %%a in ('wmic process where "name='Steam.exe'" get Ex
     set "steamPath=%%a"
 )
 if not "!steamPath!"=="" (
-    echo steam.exeÂ·¾¶: !steamPath!
+    echo steam.exeè·¯å¾„: !steamPath!
 ) else (
-    echo ²éÕÒ²»µ½steam½ø³Ì£¡ÇëÔËĞĞsteam²¢µÇÂ½ºóÖØÊÔ
+    echo æŸ¥æ‰¾ä¸åˆ°steamè¿›ç¨‹ï¼è¯·è¿è¡Œsteamå¹¶ç™»é™†åé‡è¯•
     pause
     goto getRoot
 )
 set "steamRoot=!steamPath!"
 for %%I in ("!steamPath!") do set "steamRoot=%%~dpI"
-echo steam¸ùÄ¿Â¼:!steamRoot!
+echo steamæ ¹ç›®å½•:!steamRoot!
 
 
 set "log_file=!steamRoot!logs\connection_log.txt"
@@ -35,11 +35,11 @@ for /f "tokens=11 delims=:[] " %%a in ('findstr /c:"'OK'" "%log_file%" ^| findst
 )
 
 echo\
-echo ×îĞÂµÇÂ¼steamºÃÓÑ´úÂëÎª !steamid!
+echo æœ€æ–°ç™»å½•steamå¥½å‹ä»£ç ä¸º !steamid!
 
 
 echo\
-echo ±¸·İÊäÈë1£¬»Ö¸´ÊäÈë2(1/2)
+echo å¤‡ä»½è¾“å…¥1ï¼Œæ¢å¤è¾“å…¥2(1/2)
 set /p choice=
 
 if /i "%choice%"=="1" (
@@ -49,47 +49,47 @@ if /i "%choice%"=="1" (
     cls
     goto restore
 ) else (
-    echo Invalid choice. Please enter yes or no.
+    echo Invalid choice. Please enter 1 or 2.
 )
 goto end
 
-rem -----------------------------------------------------------------------------±¸·İ
+rem -----------------------------------------------------------------------------å¤‡ä»½
 
 :backup
-title ±¸·İ´æµµ
+title å¤‡ä»½å­˜æ¡£
 
 set "ArchiveFile=!steamRoot!\userdata\!steamid!\1551360"
 if exist "!ArchiveFile!" (
-    echo ²éÕÒµ½FH5´æµµ
+    echo æŸ¥æ‰¾åˆ°FH5å­˜æ¡£
 ) else (
-    echo ´æµµ²»´æÔÚ£¡Çë¼ì²é´æµµÊÇ·ñÕı³£
+    echo å­˜æ¡£ä¸å­˜åœ¨ï¼è¯·æ£€æŸ¥å­˜æ¡£æ˜¯å¦æ­£å¸¸
     pause
     goto end
 )
 echo\
-echo ÕıÔÚ´ò°ü´æµµ...
+echo æ­£åœ¨æ‰“åŒ…å­˜æ¡£...
 tar -czf ".\backup.tar.gz" -C "!ArchiveFile!" .
 echo\
-echo ´ò°üÍê³É
+echo æ‰“åŒ…å®Œæˆ
 for %%I in (".\backup.tar.gz") do set "fileSize=%%~zI"
 set /a fileSizeMB=fileSize / (1024 * 1024)
-echo ´ò°üºóµÄ´æµµÎÄ¼ş´óĞ¡Îª: %fileSizeMB% MB
+echo æ‰“åŒ…åçš„å­˜æ¡£æ–‡ä»¶å¤§å°ä¸º: %fileSizeMB% MB
 pause
 goto end
 
-rem -----------------------------------------------------------------------------»Ö¸´
+rem -----------------------------------------------------------------------------æ¢å¤
 
 :restore
-title »Ö¸´´æµµ
+title æ¢å¤å­˜æ¡£
 
 mkdir 1551360
 mkdir "!steamRoot!\userdata\!steamid!\1551360"
-echo ½âÑ¹ÖĞ
+echo è§£å‹ä¸­
 tar -xzf backup.tar.gz -C 1551360
 xcopy /e /y "1551360" "!steamRoot!\userdata\!steamid!\1551360"
 rmdir /s /q ".\1551360"
 echo\
-echo ½âÑ¹²¢»Ö¸´³É¹¦
+echo è§£å‹å¹¶æ¢å¤æˆåŠŸ
 pause
 goto end
 
